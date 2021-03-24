@@ -5,19 +5,31 @@ main() => runApp(ExpensesApp());
 class ExpensesApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(home: MyhomePage());
+    return MaterialApp(home: MyHomePage());
   }
 }
 
-class MyhomePage extends StatelessWidget {
+class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Despesas Pessoais'),
+        title: Text('Depesas Pessoais'),
       ),
-      body: Center(
-        child: Text('Versão Inicial'),
+      body: Column(
+        children: <Widget>[
+          Container(
+            width: double.infinity,
+            child: Card(
+              color: Colors.blue,
+              child: Text('Gráfico'),
+              elevation: 5,
+            ),
+          ),
+          Card(
+            child: Text('Lista de Transações'),
+          ),
+        ],
       ),
     );
   }
