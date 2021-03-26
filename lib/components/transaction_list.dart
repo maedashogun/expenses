@@ -11,6 +11,7 @@ class TransactionList extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 300,
+      
       child: SingleChildScrollView(
         child: Column(
           children: transactions.map((tr) {
