@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import '../models/transaction.dart';
+import 'chart_bar.dart';
 
 class Chart extends StatelessWidget {
   final List<Transaction> recentTransaction;
@@ -31,6 +32,11 @@ class Chart extends StatelessWidget {
       };
     });
   }
+  double get _weekTotalValue {
+    return groupedTransactions.fold(0.0,(sum,tr) {
+      return sum + tr['value'];
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +45,17 @@ class Chart extends StatelessWidget {
       elevation: 6,
       margin: EdgeInsets.all(20),
       child: Row(
-        children: <Widget>[],
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: groupedTransactions.map((tr) {
+          return Flexible(
+            fit: FlexFit.tight,
+            child: ChartBar(
+              label: tr['day'],
+              value: tr['value'],
+              percentage: (tr['value'] as double)/_weekTotalValue,
+            ),
+          );
+        }).toList(),
       ),
     );
   }
